@@ -1,0 +1,1789 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101522">
+    <meta name="description" content="ChatMessaggin: conecta, conversa y crea comunidades.">
+    <title>ChatMessaggin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app" id="app">
+
+    <!-- BARRA LATERAL -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <div>
+                <h1>ChatMessaggin</h1>
+                <span>Tu espacio social</span>
+            </div>
+        </div>
+
+        <div class="sidebar-search">
+            <span>⌕</span>
+            <input id="globalSearch" type="search" placeholder="Buscar en ChatMessaggin...">
+            <kbd>Ctrl K</kbd>
+        </div>
+
+        <nav class="navigation" id="navigation">
+
+            <p class="nav-heading">PRINCIPAL</p>
+
+            <button class="nav-button active" data-view="home">
+                <span class="nav-icon">⌂</span>
+                <span>Inicio</span>
+            </button>
+
+            <button class="nav-button" data-view="messages">
+                <span class="nav-icon">▤</span>
+                <span>Mensajes</span>
+            </button>
+
+            <button class="nav-button" data-view="friends">
+                <span class="nav-icon">♧</span>
+                <span>Amigos</span>
+            </button>
+
+            <button class="nav-button" data-view="notifications">
+                <span class="nav-icon">♢</span>
+                <span>Notificaciones</span>
+                <span class="nav-count" id="notificationCount">0</span>
+            </button>
+
+            <p class="nav-heading">COMUNIDADES</p>
+
+            <button class="nav-button" data-view="communities">
+                <span class="nav-icon">◈</span>
+                <span>Explorar comunidades</span>
+            </button>
+
+            <div id="sidebarCommunities" class="sidebar-communities"></div>
+
+            <button class="nav-button" id="createCommunityTop">
+                <span class="nav-icon">＋</span>
+                <span>Crear comunidad</span>
+            </button>
+
+            <p class="nav-heading">PERSONAL</p>
+
+            <button class="nav-button" data-view="profile">
+                <span class="nav-icon">◉</span>
+                <span>Mi perfil</span>
+            </button>
+
+            <button class="nav-button" data-view="settings">
+                <span class="nav-icon">⚙</span>
+                <span>Configuración</span>
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="user-profile">
+                <div class="avatar" id="avatar">C</div>
+
+                <div class="user-info">
+                    <strong id="sidebarProfileName">Usuario</strong>
+                    <span id="sidebarProfileUsername">@usuario</span>
+                </div>
+
+                <button
+                    id="settings-button"
+                    class="icon-button"
+                    data-view="settings"
+                    title="Configuración">
+                    ⚙
+                </button>
+            </div>
+        </div>
+
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <p class="breadcrumb">
+                    CHATMESSAGGIN /
+                    <span id="section-title">INICIO</span>
+                </p>
+                <h2 id="pageTitle">Inicio</h2>
+            </div>
+
+            <div class="topbar-actions">
+
+                <button
+                    class="icon-button"
+                    data-view="notifications"
+                    title="Notificaciones">
+                    ♢
+                </button>
+
+                <button class="topbar-profile" data-view="profile">
+                    <span class="avatar small-avatar" id="topbarAvatar">C</span>
+                    <span id="topbarProfileName">Usuario</span>
+                </button>
+
+            </div>
+
+        </header>
+
+        <!-- INICIO -->
+        <section class="page-section active" id="homeSection" data-section="home">
+
+            <div class="welcome-card">
+
+                <div class="welcome-content">
+
+                    <span class="eyebrow">TU ESPACIO. TU COMUNIDAD.</span>
+
+                    <h2>
+                        ¡Bienvenido a
+                        <br>
+                        <span>ChatMessaggin!</span>
+                    </h2>
+
+                    <p>
+                        Habla con tus amigos, descubre comunidades
+                        y crea tu propio espacio.
+                    </p>
+
+                    <div class="welcome-actions">
+                        <button class="primary-button" data-view="messages">
+                            Abrir mensajes →
+                        </button>
+
+                        <button class="secondary-button" data-view="communities">
+                            Explorar comunidades
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="welcome-decoration">C</div>
+
+            </div>
+
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">TU ACTIVIDAD</span>
+                    <h3>Resumen</h3>
+                </div>
+            </div>
+
+            <div class="dashboard">
+
+                <button class="dashboard-card" data-view="friends">
+                    <div class="card-icon blue">♧</div>
+                    <span>AMIGOS</span>
+                    <strong id="dashboardFriends">0</strong>
+                    <small>Tu lista de amigos</small>
+                </button>
+
+                <button class="dashboard-card" data-view="messages">
+                    <div class="card-icon purple">▤</div>
+                    <span>CONVERSACIONES</span>
+                    <strong id="dashboardMessages">0</strong>
+                    <small>Tus chats</small>
+                </button>
+
+                <button class="dashboard-card" data-view="communities">
+                    <div class="card-icon cyan">◈</div>
+                    <span>COMUNIDADES</span>
+                    <strong id="dashboardCommunities">0</strong>
+                    <small>Tus espacios</small>
+                </button>
+
+            </div>
+
+            <div class="home-columns">
+
+                <div class="panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <span class="eyebrow">SOCIAL</span>
+                            <h3>Accesos rápidos</h3>
+                        </div>
+                    </div>
+
+                    <button class="quick-action" data-view="friends">
+                        <span class="quick-icon">♧</span>
+                        <span>
+                            <strong>Añadir amigos</strong>
+                            <small>Conecta con otras personas</small>
+                        </span>
+                        <b>→</b>
+                    </button>
+
+                    <button class="quick-action" data-view="messages">
+                        <span class="quick-icon">▤</span>
+                        <span>
+                            <strong>Enviar un mensaje</strong>
+                            <small>Abre tus conversaciones</small>
+                        </span>
+                        <b>→</b>
+                    </button>
+
+                    <button class="quick-action" data-view="communities">
+                        <span class="quick-icon">◈</span>
+                        <span>
+                            <strong>Crear una comunidad</strong>
+                            <small>Construye tu propio espacio</small>
+                        </span>
+                        <b>→</b>
+                    </button>
+
+                </div>
+
+                <div class="panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <span class="eyebrow">NOVEDADES</span>
+                            <h3>Actividad reciente</h3>
+                        </div>
+                    </div>
+
+                    <div id="homeActivity" class="activity-list">
+                        <div class="empty-state">
+                            Tu actividad aparecerá aquí.
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- MENSAJES -->
+        <section class="page-section" id="messagesSection" data-section="messages">
+
+            <div class="messages-layout">
+
+                <aside class="conversation-panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <span class="eyebrow">SOCIAL</span>
+                            <h3>Mensajes</h3>
+                        </div>
+
+                        <button class="icon-button" id="newGroupButton" title="Nuevo grupo">
+                            ＋
+                        </button>
+                    </div>
+
+                    <input
+                        class="search-input"
+                        id="conversationSearch"
+                        placeholder="Buscar conversación...">
+
+                    <div id="conversationList" class="conversation-list"></div>
+
+                </aside>
+
+                <div class="chat-area">
+
+                    <div id="chatPlaceholder" class="chat-placeholder">
+                        <div class="placeholder-icon">▤</div>
+                        <h3>Tu espacio de conversación</h3>
+                        <p>Selecciona un chat para empezar.</p>
+                    </div>
+
+                    <div id="activeChat" class="active-chat" hidden>
+
+                        <div class="chat-header">
+
+                            <div class="avatar" id="chatAvatar">C</div>
+
+                            <div>
+                                <strong id="chatTitle">Conversación</strong>
+                                <small id="chatSubtitle">Chat privado</small>
+                            </div>
+
+                            <button class="icon-button" id="chatOptionsButton">
+                                •••
+                            </button>
+
+                        </div>
+
+                        <div id="chatMessages" class="chat-messages"></div>
+
+                        <form id="messageForm" class="message-form">
+
+                            <button
+                                type="button"
+                                class="icon-button"
+                                id="attachMessageButton">
+                                ＋
+                            </button>
+
+                            <input
+                                id="messageInput"
+                                placeholder="Escribe un mensaje..."
+                                autocomplete="off">
+
+                            <button class="primary-button" type="submit">
+                                Enviar ↑
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- AMIGOS -->
+        <section class="page-section" id="friendsSection" data-section="friends">
+
+            <div class="page-intro">
+                <span class="eyebrow">TU CÍRCULO SOCIAL</span>
+                <h2>Amigos</h2>
+                <p>Gestiona tus contactos y descubre nuevas conexiones.</p>
+            </div>
+
+            <div class="panel">
+
+                <h3>Añadir amigo</h3>
+
+                <form id="friendForm" class="inline-form">
+
+                    <input
+                        id="friendUsername"
+                        placeholder="Introduce un @username"
+                        autocomplete="off">
+
+                    <button class="primary-button" type="submit">
+                        Añadir amigo
+                    </button>
+
+                </form>
+
+                <small class="helper-text">
+                    En esta versión, los contactos se guardan localmente.
+                </small>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="panel-heading">
+                    <h3>Mis amigos</h3>
+                    <span class="subtle-count" id="friendsCount">0</span>
+                </div>
+
+                <div id="friendsList" class="people-list"></div>
+
+            </div>
+
+        </section>
+
+        <!-- COMUNIDADES -->
+        <section class="page-section" id="communitiesSection" data-section="communities">
+
+            <div class="page-intro">
+                <span class="eyebrow">ENCUENTRA TU LUGAR</span>
+                <h2>Comunidades</h2>
+                <p>Crea espacios, reúne personas y comparte intereses.</p>
+            </div>
+
+            <div class="community-actions">
+
+                <button class="primary-button" id="createCommunityButton">
+                    ＋ Crear comunidad
+                </button>
+
+            </div>
+
+            <div class="panel">
+
+                <h3>Unirme mediante invitación</h3>
+
+                <form id="joinCommunityForm" class="inline-form">
+
+                    <input
+                        id="inviteLink"
+                        placeholder="Pega aquí un enlace de invitación">
+
+                    <button class="secondary-button" type="submit">
+                        Unirme
+                    </button>
+
+                </form>
+
+            </div>
+
+            <div class="section-heading">
+                <h3>Mis comunidades</h3>
+            </div>
+
+            <div id="communitiesList" class="community-grid"></div>
+
+        </section>
+
+        <!-- VISTA DE COMUNIDAD -->
+        <section class="page-section" id="communityViewSection" data-section="community">
+
+            <div class="community-topbar">
+
+                <button class="secondary-button" id="backToCommunities">
+                    ← Comunidades
+                </button>
+
+                <button
+                    class="icon-button"
+                    id="communitySettingsButton"
+                    title="Administrar comunidad">
+                    ⚙
+                </button>
+
+            </div>
+
+            <div class="community-banner">
+
+                <div class="community-large-icon" id="communityViewIcon">◈</div>
+
+                <div>
+                    <span class="eyebrow">COMUNIDAD</span>
+                    <h2 id="communityViewName">Comunidad</h2>
+                    <p id="communityViewDescription"></p>
+                </div>
+
+            </div>
+
+            <div class="community-layout">
+
+                <aside class="community-sidebar">
+
+                    <div class="panel-heading">
+                        <h3>Canales</h3>
+                        <button class="icon-button" id="addChannelButton">＋</button>
+                    </div>
+
+                    <div id="communityChannels"></div>
+
+                    <div class="panel-heading members-heading">
+                        <h3>Miembros</h3>
+                    </div>
+
+                    <div id="communityMembers"></div>
+
+                    <button class="secondary-button full-width" id="inviteFromCommunity">
+                        Copiar invitación
+                    </button>
+
+                </aside>
+
+                <div class="community-chat">
+
+                    <div class="chat-header">
+                        <div>
+                            <strong id="channelTitle"># general</strong>
+                            <small>Canal de la comunidad</small>
+                        </div>
+                    </div>
+
+                    <div id="communityMessages" class="chat-messages"></div>
+
+                    <form id="communityMessageForm" class="message-form">
+
+                        <input
+                            id="communityMessageInput"
+                            placeholder="Escribe en este canal..."
+                            autocomplete="off">
+
+                        <button class="primary-button" type="submit">
+                            Enviar ↑
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- CREAR COMUNIDAD -->
+        <section class="page-section" id="createCommunitySection" data-section="createCommunity">
+
+            <div class="page-intro">
+                <span class="eyebrow">CONSTRUYE TU ESPACIO</span>
+                <h2>Crear comunidad</h2>
+                <p>Empieza a crear un lugar para compartir.</p>
+            </div>
+
+            <form id="communityForm" class="panel form-panel">
+
+                <label for="communityName">Nombre de la comunidad</label>
+                <input id="communityName" maxlength="40" placeholder="Ej. Gaming World" required>
+
+                <label for="communityDescription">Descripción</label>
+                <textarea id="communityDescription" maxlength="240" placeholder="¿De qué trata tu comunidad?"></textarea>
+
+                <label for="communityVisibility">Privacidad</label>
+
+                <select id="communityVisibility">
+                    <option value="public">Pública</option>
+                    <option value="private">Privada</option>
+                </select>
+
+                <div class="form-actions">
+
+                    <button type="button" class="secondary-button" id="cancelCreateCommunity">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="primary-button">
+                        Crear comunidad
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+        <!-- NOTIFICACIONES -->
+        <section class="page-section" id="notificationsSection" data-section="notifications">
+
+            <div class="page-intro">
+                <span class="eyebrow">MANTENTE AL DÍA</span>
+                <h2>Notificaciones</h2>
+                <p>Tus novedades y actividad reciente.</p>
+            </div>
+
+            <div class="panel">
+
+                <div class="panel-heading">
+                    <h3>Actividad</h3>
+                    <button class="text-button" id="clearNotificationsButton">
+                        Limpiar
+                    </button>
+                </div>
+
+                <div id="notificationsList"></div>
+
+            </div>
+
+        </section>
+
+        <!-- PERFIL -->
+        <section class="page-section" id="profileSection" data-section="profile">
+
+            <div class="page-intro">
+                <span class="eyebrow">TU IDENTIDAD</span>
+                <h2>Mi perfil</h2>
+                <p>Personaliza cómo te ven los demás.</p>
+            </div>
+
+            <form id="profileForm" class="panel form-panel">
+
+                <div class="profile-banner-preview" id="profileBannerPreview">
+                    <span>Tu banner</span>
+                </div>
+
+                <div class="profile-avatar-preview" id="profileAvatarPreview">
+                    C
+                </div>
+
+                <label for="profileName">Nombre visible</label>
+                <input id="profileName" maxlength="40" placeholder="Tu nombre">
+
+                <label for="profileUsername">Nombre de usuario</label>
+                <input id="profileUsername" maxlength="24" placeholder="@usuario">
+
+                <label for="profileBio">Biografía</label>
+                <textarea id="profileBio" maxlength="190" placeholder="Cuéntales algo sobre ti..."></textarea>
+
+                <label for="profileAvatar">Foto de perfil</label>
+                <input id="profileAvatar" type="file" accept="image/*">
+
+                <label for="profileBanner">Banner</label>
+                <input id="profileBanner" type="file" accept="image/*">
+
+                <button class="primary-button" type="submit">
+                    Guardar perfil
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- CONFIGURACIÓN -->
+        <section class="page-section" id="settingsSection" data-section="settings">
+
+            <div class="page-intro">
+                <span class="eyebrow">PERSONALIZA TU EXPERIENCIA</span>
+                <h2>Configuración</h2>
+                <p>Controla cada detalle de ChatMessaggin.</p>
+            </div>
+
+            <div class="settings-layout">
+
+                <aside class="settings-sidebar">
+
+                    <input id="settingsSearch" class="search-input" placeholder="Buscar ajustes...">
+
+                    <p class="nav-heading">CUENTA</p>
+
+                    <button class="settings-nav active" data-settings="account">◉ Mi cuenta</button>
+                    <button class="settings-nav" data-settings="profileSettings">♙ Mi perfil</button>
+                    <button class="settings-nav" data-settings="privacy">♧ Privacidad</button>
+                    <button class="settings-nav" data-settings="security">♢ Seguridad</button>
+
+                    <p class="nav-heading">APLICACIÓN</p>
+
+                    <button class="settings-nav" data-settings="appearance">◐ Apariencia</button>
+                    <button class="settings-nav" data-settings="messagesSettings">▤ Mensajes</button>
+                    <button class="settings-nav" data-settings="notificationsSettings">♧ Notificaciones</button>
+                    <button class="settings-nav" data-settings="accessibility">◎ Accesibilidad</button>
+                    <button class="settings-nav" data-settings="language">文 Idioma</button>
+
+                    <p class="nav-heading">SOCIAL</p>
+
+                    <button class="settings-nav" data-settings="friendsSettings">♧ Amigos</button>
+                    <button class="settings-nav" data-settings="communitiesSettings">◈ Comunidades</button>
+
+                    <p class="nav-heading">INFORMACIÓN</p>
+
+                    <button class="settings-nav" data-settings="application">⚙ Aplicación</button>
+                    <button class="settings-nav" data-settings="about">ⓘ Acerca de</button>
+
+                </aside>
+
+                <div class="settings-content">
+
+                    <div class="settings-panel active" data-settings-panel="account">
+
+                        <span class="eyebrow">CUENTA</span>
+                        <h3>Mi cuenta</h3>
+                        <p>Gestiona la información principal de tu cuenta.</p>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Nombre visible</strong>
+                                <small>El nombre que aparece en tu perfil.</small>
+                            </div>
+                            <button class="secondary-button" data-view="profile">Editar perfil</button>
+                        </div>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Nombre de usuario</strong>
+                                <small>Tu identificador dentro de ChatMessaggin.</small>
+                            </div>
+                            <button class="secondary-button" data-view="profile">Editar</button>
+                        </div>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Correo electrónico</strong>
+                                <small>Disponible cuando incorporemos cuentas online.</small>
+                            </div>
+                            <span class="setting-status">Próximamente</span>
+                        </div>
+
+                    </div>
+
+                    <div class="settings-panel" data-settings-panel="profileSettings">
+
+                        <span class="eyebrow">IDENTIDAD</span>
+                        <h3>Mi perfil</h3>
+                        <p>Personaliza tu presencia.</p>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Editar información</strong>
+                                <small>Nombre, username, biografía y fotografías.</small>
+                            </div>
+                            <button class="secondary-button" data-view="profile">Abrir perfil</button>
+                        </div>
+
+                    </div>
+
+                    <div class="settings-panel" data-settings-panel="privacy">
+
+                        <span class="eyebrow">CONTROL</span>
+                        <h3>Privacidad</h3>
+                        <p>Controla tu visibilidad y tus interacciones.</p>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Mostrar estado online</strong>
+                                <small>Permite mostrar tu estado en la aplicación.</small>
+                            </div>
+                            <input type="checkbox" id="showOnlineStatus" checked>
+                        </div>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Permitir mensajes de otros usuarios</strong>
+                                <small>Preferencia preparada para el sistema online.</small>
+                            </div>
+                            <input type="checkbox" id="allowMessages" checked>
+                        </div>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Solicitudes de amistad</strong>
+                                <small>Preferencia preparada para futuras cuentas.</small>
+                            </div>
+                            <select id="friendRequestPrivacy">
+                                <option value="everyone">Todo el mundo</option>
+                                <option value="nobody">Nadie</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="settings-panel" data-settings-panel="security">
+
+                        <span class="eyebrow">PROTECCIÓN</span>
+                        <h3>Seguridad</h3>
+                        <p>Opciones de protección de tu cuenta.</p>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Sesiones activas</strong>
+                                <small>La gestión de sesiones estará disponible con cuentas online.</small>
+                            </div>
+                            <span class="setting-status">Próximamente</span>
+                        </div>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Autenticación adicional</strong>
+                                <small>Se incorporará cuando exista el backend.</small>
+                            </div>
+                            <span class="setting-status">Próximamente</span>
+                        </div>
+
+                    </div>
+
+                    <div class="settings-panel" data-settings-panel="appearance">
+
+                        <span class="eyebrow">DISEÑO</span>
+                        <h3>Apariencia</h3>
+                        <p>Adapta la interfaz a tus preferencias.</p>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Tema</strong>
+                                <small>Selecciona el aspecto de la aplicación.</small>
+                            </div>
+                            <select id="themeSelect">
+                                <option value="dark">Oscuro</option>
+                                <option value="light">Claro</option>
+                                <option value="system">Sistema</option>
+                            </select>
+                        </div>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Color de acento</strong>
+                                <small>Personalización de color.</small>
+                            </div>
+                            <select id="accentColor">
+                                <option value="blue">Azul</option>
+                                <option value="purple">Morado</option>
+                                <option value="cyan">Cian</option>
+                            </select>
+                        </div>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Escala de interfaz</strong>
+                                <small>Tamaño general de los elementos.</small>
+                            </div>
+                            <select id="interfaceScale">
+                                <option value="normal">Normal</option>
+                                <option value="large">Grande</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="settings-panel" data-settings-panel="messagesSettings">
+
+                        <span class="eyebrow">CONVERSACIONES</span>
+                        <h3>Mensajes</h3>
+                        <p>Configura tu experiencia de chat.</p>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Enviar con Enter</strong>
+                                <small>Envía el mensaje al pulsar Enter.</small>
+                            </div>
+                            <input type="checkbox" id="enterToSend" checked>
+                        </div>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Mostrar vista previa de enlaces</strong>
+                                <small>Preferencia para futuras conversaciones online.</small>
+                            </div>
+                            <input type="checkbox" id="linkPreviews" checked>
+                        </div>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Confirmar antes de borrar</strong>
+                                <small>Evita acciones accidentales.</small>
+                            </div>
+                            <input type="checkbox" id="confirmDelete" checked>
+                        </div>
+
+                    </div>
+
+                    <div class="settings-panel" data-settings-panel="notificationsSettings">
+
+                        <span class="eyebrow">AVISOS</span>
+                        <h3>Notificaciones</h3>
+                        <p>Decide qué avisos quieres recibir.</p>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Notificaciones de la aplicación</strong>
+                                <small>Activa o desactiva los avisos.</small>
+                            </div>
+                            <input type="checkbox" id="notificationsEnabled" checked>
+                        </div>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Sonidos</strong>
+                                <small>Preferencia de sonido.</small>
+                            </div>
+                            <input type="checkbox" id="notificationSounds">
+                        </div>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Actividad de amigos</strong>
+                                <small>Avisos de actividad social.</small>
+                            </div>
+                            <input type="checkbox" id="friendNotifications" checked>
+                        </div>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Actividad de comunidades</strong>
+                                <small>Avisos de tus comunidades.</small>
+                            </div>
+                            <input type="checkbox" id="communityNotifications" checked>
+                        </div>
+
+                    </div>
+
+                    <div class="settings-panel" data-settings-panel="accessibility">
+
+                        <span class="eyebrow">ACCESIBILIDAD</span>
+                        <h3>Accesibilidad</h3>
+                        <p>Haz que la aplicación sea más cómoda.</p>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Reducir animaciones</strong>
+                                <small>Disminuye los movimientos de la interfaz.</small>
+                            </div>
+                            <input type="checkbox" id="reduceAnimations">
+                        </div>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Texto grande</strong>
+                                <small>Mejora la legibilidad.</small>
+                            </div>
+                            <input type="checkbox" id="largeText">
+                        </div>
+
+                    </div>
+
+                    <div class="settings-panel" data-settings-panel="language">
+
+                        <span class="eyebrow">IDIOMA</span>
+                        <h3>Idioma</h3>
+                        <p>Selecciona el idioma de la aplicación.</p>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Idioma de la interfaz</strong>
+                                <small>Actualmente disponible en español.</small>
+                            </div>
+                            <select id="languageSelect">
+                                <option value="es">Español</option>
+                                <option value="en" disabled>English — Próximamente</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="settings-panel" data-settings-panel="friendsSettings">
+
+                        <span class="eyebrow">CONTACTOS</span>
+                        <h3>Amigos</h3>
+                        <p>Preferencias de tu lista social.</p>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Mostrar amigos en inicio</strong>
+                                <small>Preferencia de visualización.</small>
+                            </div>
+                            <input type="checkbox" id="showFriendsHome" checked>
+                        </div>
+
+                    </div>
+
+                    <div class="settings-panel" data-settings-panel="communitiesSettings">
+
+                        <span class="eyebrow">ESPACIOS</span>
+                        <h3>Comunidades</h3>
+                        <p>Configura tus comunidades.</p>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Mostrar comunidades en la barra lateral</strong>
+                                <small>Acceso rápido a tus espacios.</small>
+                            </div>
+                            <input type="checkbox" id="showCommunitiesSidebar" checked>
+                        </div>
+
+                    </div>
+
+                    <div class="settings-panel" data-settings-panel="application">
+
+                        <span class="eyebrow">PREFERENCIAS</span>
+                        <h3>Aplicación</h3>
+                        <p>Opciones generales de ChatMessaggin.</p>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Iniciar con Windows</strong>
+                                <small>Disponible en una futura versión de escritorio.</small>
+                            </div>
+                            <span class="setting-status">Próximamente</span>
+                        </div>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Buscar actualizaciones</strong>
+                                <small>Consulta las novedades de ChatMessaggin.</small>
+                            </div>
+                            <button class="secondary-button" id="checkUpdatesButton">
+                                Comprobar
+                            </button>
+                        </div>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Restaurar ajustes</strong>
+                                <small>Devuelve las preferencias a sus valores iniciales.</small>
+                            </div>
+                            <button class="danger-button" id="resetSettingsButton">
+                                Restaurar
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class="settings-panel" data-settings-panel="about">
+
+                        <span class="eyebrow">CHATMESSAGGIN</span>
+                        <h3>Acerca de</h3>
+                        <p>Información de esta aplicación.</p>
+
+                        <div class="about-logo">C</div>
+
+                        <h2>ChatMessaggin</h2>
+                        <p>Versión 2.0 — En desarrollo</p>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Proyecto</strong>
+                                <small>Aplicación de mensajería social.</small>
+                            </div>
+                            <span>ChatMessaggin</span>
+                        </div>
+
+                        <div class="setting-row">
+                            <div>
+                                <strong>Estado</strong>
+                                <small>Funciones locales en desarrollo.</small>
+                            </div>
+                            <span class="setting-status">En desarrollo</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- PIE DE PÁGINA -->
+        <footer class="app-footer">
+            <span>ChatMessaggin</span>
+            <span>Un espacio para conectar.</span>
+        </footer>
+
+    </main>
+
+</div>
+
+<!-- CENTRO DE ADMINISTRACIÓN -->
+<div class="admin-overlay" id="communityAdminOverlay" hidden>
+
+    <div class="admin-window">
+
+        <aside class="admin-sidebar">
+
+            <div class="admin-sidebar-header">
+
+                <button class="admin-back-button" id="closeCommunityAdmin">
+                    ← Volver
+                </button>
+
+                <div class="admin-community-identity">
+
+                    <div class="admin-community-avatar" id="adminCommunityAvatar">
+                        ◈
+                    </div>
+
+                    <div>
+                        <strong id="adminCommunityName">Comunidad</strong>
+                        <small>Administración</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <nav class="admin-navigation" id="adminNavigation">
+
+                <span class="admin-nav-label">COMUNIDAD</span>
+
+                <button class="admin-nav-button active" data-admin-tab="overview">
+                    ◈ <span>Vista general</span>
+                </button>
+
+                <button class="admin-nav-button" data-admin-tab="community">
+                    ⚙ <span>Configuración</span>
+                </button>
+
+                <button class="admin-nav-button" data-admin-tab="channels">
+                    ▤ <span>Canales</span>
+                </button>
+
+                <span class="admin-nav-label">PERSONAS</span>
+
+                <button class="admin-nav-button" data-admin-tab="members">
+                    ♧ <span>Miembros</span>
+                </button>
+
+                <button class="admin-nav-button" data-admin-tab="roles">
+                    ♙ <span>Roles y permisos</span>
+                </button>
+
+                <button class="admin-nav-button" data-admin-tab="invitations">
+                    ↗ <span>Invitaciones</span>
+                </button>
+
+                <span class="admin-nav-label">MODERACIÓN</span>
+
+                <button class="admin-nav-button" data-admin-tab="security">
+                    ♢ <span>Seguridad</span>
+                </button>
+
+                <button class="admin-nav-button" data-admin-tab="audit">
+                    ▥ <span>Registro de auditoría</span>
+                </button>
+
+                <span class="admin-nav-label">PERSONALIZACIÓN</span>
+
+                <button class="admin-nav-button" data-admin-tab="emojis">
+                    ✧ <span>Emojis y stickers</span>
+                </button>
+
+                <button class="admin-nav-button" data-admin-tab="integrations">
+                    ⌘ <span>Integraciones</span>
+                </button>
+
+                <span class="admin-nav-label">ZONA AVANZADA</span>
+
+                <button class="admin-nav-button admin-danger-nav" data-admin-tab="delete">
+                    ⌫ <span>Eliminar comunidad</span>
+                </button>
+
+            </nav>
+
+            <div class="admin-sidebar-footer">
+                <span>ChatMessaggin</span>
+                <small>Centro de administración</small>
+            </div>
+
+        </aside>
+
+        <main class="admin-main">
+
+            <header class="admin-topbar">
+
+                <div>
+                    <span class="admin-breadcrumb">
+                        ADMINISTRACIÓN /
+                        <span id="adminBreadcrumb">VISTA GENERAL</span>
+                    </span>
+
+                    <h2 id="adminPageTitle">Vista general</h2>
+                </div>
+
+                <button class="icon-button" id="adminCloseTop" title="Cerrar">
+                    ✕
+                </button>
+
+            </header>
+
+            <div class="admin-content">
+
+                <!-- VISTA GENERAL -->
+                <section class="admin-panel active" data-admin-panel="overview">
+
+                    <div class="admin-welcome">
+
+                        <div>
+                            <span class="admin-eyebrow">CENTRO DE CONTROL</span>
+                            <h2>Gestiona tu comunidad</h2>
+                            <p>
+                                Administra la configuración, los miembros,
+                                los canales y la seguridad desde un solo lugar.
+                            </p>
+                        </div>
+
+                        <div class="admin-welcome-icon">◈</div>
+
+                    </div>
+
+                    <div class="admin-stat-grid">
+
+                        <div class="admin-stat-card">
+                            <span>MIEMBROS</span>
+                            <strong id="adminStatMembers">0</strong>
+                            <small>Personas registradas localmente</small>
+                        </div>
+
+                        <div class="admin-stat-card">
+                            <span>CANALES</span>
+                            <strong id="adminStatChannels">0</strong>
+                            <small>Canales de la comunidad</small>
+                        </div>
+
+                        <div class="admin-stat-card">
+                            <span>ROLES</span>
+                            <strong id="adminStatRoles">0</strong>
+                            <small>Roles configurados</small>
+                        </div>
+
+                        <div class="admin-stat-card">
+                            <span>INVITACIONES</span>
+                            <strong id="adminStatInvites">0</strong>
+                            <small>Invitaciones activas</small>
+                        </div>
+
+                    </div>
+
+                    <div class="admin-card">
+
+                        <div class="admin-card-heading">
+
+                            <div>
+                                <span class="admin-eyebrow">INFORMACIÓN</span>
+                                <h3>Datos de la comunidad</h3>
+                            </div>
+
+                            <button class="secondary-button" data-admin-goto="community">
+                                Editar
+                            </button>
+
+                        </div>
+
+                        <div class="admin-overview-details">
+
+                            <div>
+                                <small>Nombre</small>
+                                <strong id="adminOverviewName">—</strong>
+                            </div>
+
+                            <div>
+                                <small>Propietario</small>
+                                <strong id="adminOverviewOwner">—</strong>
+                            </div>
+
+                            <div>
+                                <small>Privacidad</small>
+                                <strong id="adminOverviewVisibility">—</strong>
+                            </div>
+
+                            <div>
+                                <small>Identificador</small>
+                                <strong id="adminOverviewId">—</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="admin-card">
+
+                        <div class="admin-card-heading">
+                            <div>
+                                <span class="admin-eyebrow">ACCESOS RÁPIDOS</span>
+                                <h3>Herramientas de gestión</h3>
+                            </div>
+                        </div>
+
+                        <div class="admin-quick-grid">
+
+                            <button data-admin-goto="members">
+                                ♧
+                                <strong>Gestionar miembros</strong>
+                                <small>Consultar y administrar participantes</small>
+                            </button>
+
+                            <button data-admin-goto="roles">
+                                ♙
+                                <strong>Configurar roles</strong>
+                                <small>Crear permisos y jerarquías</small>
+                            </button>
+
+                            <button data-admin-goto="channels">
+                                ▤
+                                <strong>Organizar canales</strong>
+                                <small>Administrar los espacios</small>
+                            </button>
+
+                            <button data-admin-goto="invitations">
+                                ↗
+                                <strong>Invitaciones</strong>
+                                <small>Crear y revocar códigos</small>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- CONFIGURACIÓN -->
+                <section class="admin-panel" data-admin-panel="community">
+
+                    <div class="admin-section-intro">
+                        <span class="admin-eyebrow">IDENTIDAD</span>
+                        <h2>Configuración de comunidad</h2>
+                        <p>Personaliza el nombre, la descripción y la apariencia de tu espacio.</p>
+                    </div>
+
+                    <form id="adminCommunityForm" class="admin-card admin-form">
+
+                        <label for="adminNameInput">Nombre de la comunidad</label>
+                        <input id="adminNameInput" maxlength="40" placeholder="Nombre">
+
+                        <label for="adminDescriptionInput">Descripción</label>
+                        <textarea id="adminDescriptionInput" maxlength="240" placeholder="Describe tu comunidad..."></textarea>
+
+                        <label for="adminIconInput">Icono o emoji</label>
+                        <input id="adminIconInput" maxlength="8" placeholder="◈">
+
+                        <label for="adminBannerInput">Banner de comunidad</label>
+                        <input id="adminBannerInput" type="file" accept="image/*">
+
+                        <label for="adminVisibilityInput">Privacidad</label>
+                        <select id="adminVisibilityInput">
+                            <option value="public">Pública</option>
+                            <option value="private">Privada</option>
+                        </select>
+
+                        <label for="adminRulesInput">Reglas de la comunidad</label>
+                        <textarea id="adminRulesInput" maxlength="2000" placeholder="Escribe las reglas de tu comunidad..."></textarea>
+
+                        <div class="admin-form-actions">
+                            <button class="primary-button" type="submit">
+                                Guardar cambios
+                            </button>
+                        </div>
+
+                    </form>
+
+                </section>
+
+                <!-- CANALES -->
+                <section class="admin-panel" data-admin-panel="channels">
+
+                    <div class="admin-section-intro">
+                        <span class="admin-eyebrow">ORGANIZACIÓN</span>
+                        <h2>Canales</h2>
+                        <p>Crea y organiza los canales de tu comunidad.</p>
+                    </div>
+
+                    <div class="admin-card">
+
+                        <div class="admin-card-heading">
+                            <h3>Canales existentes</h3>
+                            <button class="primary-button" id="adminCreateChannel">
+                                ＋ Crear canal
+                            </button>
+                        </div>
+
+                        <div id="adminChannelsList" class="admin-managed-list"></div>
+
+                    </div>
+
+                    <div class="admin-card">
+
+                        <h3>Crear un nuevo canal</h3>
+
+                        <form id="adminChannelForm" class="admin-form">
+
+                            <label for="adminChannelName">Nombre</label>
+                            <input id="adminChannelName" maxlength="40" placeholder="Ej. novedades" required>
+
+                            <label for="adminChannelType">Tipo de canal</label>
+
+                            <select id="adminChannelType">
+                                <option value="text">Texto</option>
+                                <option value="voice">Voz (preparado para backend)</option>
+                            </select>
+
+                            <label for="adminChannelTopic">Descripción del canal</label>
+                            <input id="adminChannelTopic" maxlength="120" placeholder="¿Para qué sirve este canal?">
+
+                            <button class="primary-button" type="submit">
+                                Añadir canal
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </section>
+
+                <!-- MIEMBROS -->
+                <section class="admin-panel" data-admin-panel="members">
+
+                    <div class="admin-section-intro">
+                        <span class="admin-eyebrow">PARTICIPANTES</span>
+                        <h2>Miembros</h2>
+                        <p>Consulta los participantes y administra sus roles.</p>
+                    </div>
+
+                    <div class="admin-card">
+
+                        <div class="admin-card-heading">
+                            <h3>Lista de miembros</h3>
+                            <span class="admin-count" id="adminMemberCount">0 miembros</span>
+                        </div>
+
+                        <input id="adminMemberSearch" type="search" placeholder="Buscar miembro...">
+
+                        <div id="adminMembersList" class="admin-managed-list"></div>
+
+                    </div>
+
+                    <p class="admin-notice">
+                        Los miembros que aparecen aquí son los registros locales
+                        de esta instalación. La gestión de usuarios de otros
+                        dispositivos requiere un servidor.
+                    </p>
+
+                </section>
+
+                <!-- ROLES -->
+                <section class="admin-panel" data-admin-panel="roles">
+
+                    <div class="admin-section-intro">
+                        <span class="admin-eyebrow">JERARQUÍA Y ACCESO</span>
+                        <h2>Roles y permisos</h2>
+                        <p>Define qué puede hacer cada rol dentro de la comunidad.</p>
+                    </div>
+
+                    <div class="admin-card">
+
+                        <div class="admin-card-heading">
+                            <h3>Roles disponibles</h3>
+                            <button class="primary-button" id="adminCreateRole">
+                                ＋ Crear rol
+                            </button>
+                        </div>
+
+                        <div id="adminRolesList" class="admin-managed-list"></div>
+
+                    </div>
+
+                    <div class="admin-card" id="adminRoleEditor">
+
+                        <h3>Editor de roles</h3>
+
+                        <form id="adminRoleForm" class="admin-form">
+
+                            <input type="hidden" id="adminRoleId">
+
+                            <label for="adminRoleName">Nombre del rol</label>
+                            <input id="adminRoleName" maxlength="32" placeholder="Ej. Moderador" required>
+
+                            <label for="adminRoleColor">Color del rol</label>
+                            <input id="adminRoleColor" type="color" value="#287bff">
+
+                            <div class="admin-permissions">
+
+                                <h4>Permisos</h4>
+
+                                <label>
+                                    <input type="checkbox" value="manageCommunity">
+                                    Administrar comunidad
+                                </label>
+
+                                <label>
+                                    <input type="checkbox" value="manageChannels">
+                                    Gestionar canales
+                                </label>
+
+                                <label>
+                                    <input type="checkbox" value="manageRoles">
+                                    Gestionar roles
+                                </label>
+
+                                <label>
+                                    <input type="checkbox" value="manageMembers">
+                                    Gestionar miembros
+                                </label>
+
+                                <label>
+                                    <input type="checkbox" value="manageMessages">
+                                    Gestionar mensajes
+                                </label>
+
+                                <label>
+                                    <input type="checkbox" value="manageInvites">
+                                    Gestionar invitaciones
+                                </label>
+
+                                <label>
+                                    <input type="checkbox" value="moderateMembers">
+                                    Moderar miembros
+                                </label>
+
+                            </div>
+
+                            <div class="admin-form-actions">
+
+                                <button type="button" class="secondary-button" id="adminCancelRole">
+                                    Cancelar
+                                </button>
+
+                                <button type="submit" class="primary-button">
+                                    Guardar rol
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </section>
+
+                <!-- INVITACIONES -->
+                <section class="admin-panel" data-admin-panel="invitations">
+
+                    <div class="admin-section-intro">
+                        <span class="admin-eyebrow">ACCESO</span>
+                        <h2>Invitaciones</h2>
+                        <p>Genera códigos de invitación y administra los que ya existen.</p>
+                    </div>
+
+                    <div class="admin-card">
+
+                        <h3>Crear invitación</h3>
+
+                        <form id="adminInviteForm" class="admin-form">
+
+                            <label for="adminInviteExpiry">Caducidad</label>
+
+                            <select id="adminInviteExpiry">
+                                <option value="1">1 día</option>
+                                <option value="7" selected>7 días</option>
+                                <option value="30">30 días</option>
+                                <option value="0">Sin caducidad</option>
+                            </select>
+
+                            <label for="adminInviteUses">Número máximo de usos</label>
+
+                            <select id="adminInviteUses">
+                                <option value="1">1 uso</option>
+                                <option value="5">5 usos</option>
+                                <option value="10">10 usos</option>
+                                <option value="25">25 usos</option>
+                                <option value="0">Sin límite</option>
+                            </select>
+
+                            <button class="primary-button" type="submit">
+                                Generar invitación
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                    <div class="admin-card">
+                        <h3>Invitaciones existentes</h3>
+                        <div id="adminInvitesList" class="admin-managed-list"></div>
+                    </div>
+
+                    <p class="admin-notice">
+                        Las invitaciones actuales son locales. No permiten que
+                        otra persona entre desde otro dispositivo hasta que exista un backend.
+                    </p>
+
+                </section>
+
+                <!-- SEGURIDAD -->
+                <section class="admin-panel" data-admin-panel="security">
+
+                    <div class="admin-section-intro">
+                        <span class="admin-eyebrow">PROTECCIÓN</span>
+                        <h2>Seguridad y moderación</h2>
+                        <p>Configura las opciones de seguridad disponibles en esta versión.</p>
+                    </div>
+
+                    <div class="admin-card">
+
+                        <h3>Controles de acceso</h3>
+
+                        <div class="admin-setting-row">
+                            <div>
+                                <strong>Comunidad privada</strong>
+                                <small>Limita el acceso mediante invitación local.</small>
+                            </div>
+                            <input type="checkbox" id="adminPrivateAccess">
+                        </div>
+
+                        <div class="admin-setting-row">
+                            <div>
+                                <strong>Revisión de nuevos miembros</strong>
+                                <small>Preferencia para un futuro sistema de solicitudes.</small>
+                            </div>
+                            <input type="checkbox" id="adminMemberVerification">
+                        </div>
+
+                        <div class="admin-setting-row">
+                            <div>
+                                <strong>Modo de seguridad</strong>
+                                <small>Activa controles locales adicionales.</small>
+                            </div>
+                            <input type="checkbox" id="adminSafetyMode">
+                        </div>
+
+                    </div>
+
+                    <div class="admin-card">
+
+                        <h3>Herramientas de moderación</h3>
+
+                        <p class="admin-muted">
+                            Las acciones de moderación sobre usuarios reales
+                            necesitarán un servidor y un sistema de permisos seguro.
+                        </p>
+
+                        <div id="adminModerationInfo" class="admin-info-box">
+                            La moderación remota todavía no está disponible.
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- AUDITORÍA -->
+                <section class="admin-panel" data-admin-panel="audit">
+
+                    <div class="admin-section-intro">
+                        <span class="admin-eyebrow">TRANSPARENCIA</span>
+                        <h2>Registro de auditoría</h2>
+                        <p>Consulta las acciones administrativas guardadas localmente.</p>
+                    </div>
+
+                    <div class="admin-card">
+
+                        <div class="admin-card-heading">
+                            <h3>Historial de actividad</h3>
+                            <button class="secondary-button" id="adminClearAudit">
+                                Limpiar historial
+                            </button>
+                        </div>
+
+                        <div id="adminAuditList" class="admin-managed-list"></div>
+
+                    </div>
+
+                </section>
+
+                <!-- EMOJIS -->
+                <section class="admin-panel" data-admin-panel="emojis">
+
+                    <div class="admin-section-intro">
+                        <span class="admin-eyebrow">PERSONALIZACIÓN</span>
+                        <h2>Emojis y stickers</h2>
+                        <p>Prepara una colección de recursos visuales para tu comunidad.</p>
+                    </div>
+
+                    <div class="admin-card">
+
+                        <h3>Añadir recurso</h3>
+
+                        <form id="adminEmojiForm" class="admin-form">
+
+                            <label for="adminEmojiName">Nombre</label>
+                            <input id="adminEmojiName" maxlength="32" placeholder="Ej. logo">
+
+                            <label for="adminEmojiFile">Imagen</label>
+                            <input id="adminEmojiFile" type="file" accept="image/png,image/jpeg,image/webp">
+
+                            <small class="admin-muted">
+                                Formatos admitidos: PNG, JPG y WebP. Máximo 3 MB por imagen.
+                            </small>
+
+                            <button class="primary-button" type="submit">
+                                Añadir recurso
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                    <div class="admin-card">
+                        <h3>Recursos guardados</h3>
+                        <div id="adminEmojisList" class="admin-managed-list"></div>
+                    </div>
+
+                </section>
+
+                <!-- INTEGRACIONES -->
+                <section class="admin-panel" data-admin-panel="integrations">
+
+                    <div class="admin-section-intro">
+                        <span class="admin-eyebrow">EXTENSIONES</span>
+                        <h2>Integraciones</h2>
+                        <p>Información sobre futuras integraciones y herramientas externas.</p>
+                    </div>
+
+                    <div class="admin-card">
+
+                        <h3>Integraciones disponibles</h3>
+
+                        <div class="admin-integration-card">
+
+                            <div class="admin-integration-icon">⌘</div>
+
+                            <div>
+                                <strong>Sistema de bots</strong>
+                                <small>Preparado para futuras integraciones con backend.</small>
+                            </div>
+
+                            <span class="admin-status">En desarrollo</span>
+
+                        </div>
+
+                        <div class="admin-integration-card">
+
+                            <div class="admin-integration-icon">↗</div>
+
+                            <div>
+                                <strong>Webhooks</strong>
+                                <small>Las notificaciones externas se incorporarán en otra versión.</small>
+                            </div>
+
+                            <span class="admin-status">Próximamente</span>
+
+                        </div>
+
+                        <div class="admin-integration-card">
+
+                            <div class="admin-integration-icon">⚙</div>
+
+                            <div>
+                                <strong>API de comunidad</strong>
+                                <small>Interfaz para futuras herramientas de desarrolladores.</small>
+                            </div>
+
+                            <span class="admin-status">Planificado</span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- ELIMINAR COMUNIDAD -->
+                <section class="admin-panel" data-admin-panel="delete">
+
+                    <div class="admin-section-intro">
+                        <span class="admin-eyebrow">ZONA AVANZADA</span>
+                        <h2>Eliminar comunidad</h2>
+                        <p>Esta sección contiene acciones permanentes.</p>
+                    </div>
+
+                    <div class="admin-danger-card">
+
+                        <div class="admin-danger-icon">!</div>
+
+                        <h3>Eliminar esta comunidad</h3>
+
+                        <p>
+                            La eliminación borrará los datos locales de esta comunidad,
+                            incluidos sus canales y mensajes guardados en esta instalación.
+                        </p>
+
+                        <label for="adminDeleteConfirmation">
+                            Escribe el nombre de la comunidad para confirmar
+                        </label>
+
+                        <input
+                            id="adminDeleteConfirmation"
+                            placeholder="Nombre de la comunidad">
+
+                        <button class="danger-button" id="adminDeleteCommunity">
+                            Eliminar comunidad permanentemente
+                        </button>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</div>
+
+<!-- NOTIFICACIONES EMERGENTES -->
+<div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+<!-- JAVASCRIPT -->
+<script src="script.js"></script>
+
+</body>
+</html>
